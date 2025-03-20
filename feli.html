@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <title>Feliz cumpleaños</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: "Parisienne", cursive ;
+            font-weight: 400;
+            font-style: normal;
+            animation: bgColorChange 10s infinite alternate;
+            position: relative;
+        }
+        @keyframes bgColorChange {
+            0% { background-color: #ff99cc; }
+            25% { background-color: #ff66b2; }
+            50% { background-color: #ff3399; }
+            75% { background-color: #ff008077; }
+            100% { background-color: #ff43a1; }
+        }
+        .container {
+            background: #ffccdd;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            position: relative;
+            z-index: 10;
+            opacity: 0.9;
+        }
+        h1 {
+            color: white;
+            font-size: 24px;
+            
+        }
+        p {
+            color: #660033;
+            font-size: 18px;
+        }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-yes {
+            background: #fa4170;
+            color: white;
+        }
+        .btn-no {
+            background: #ff6688;
+            color: white;
+            position: relative;
+        }
+        .card-download {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background: #ffccdd;
+            border-radius: 10px;
+        }
+        .heart {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: red;
+            transform: rotate(-45deg);
+            animation: moveHearts 5s infinite;
+        }
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes moveHearts {
+            0% { top: 100%; }
+            100% { top: -20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts"></div>
+    <div class="container">
+        <h1 style="font-size: 60px; margin: 0px;">¡Feliz Cumpleaños!</h1>
+        <p>Gracias por ser tú, por cada risa, por cada abrazo, por cada momento juntos. Hoy te celebro. 🎉</p>
+        <p><strong>¿Lista para tu ultimo regalo?</strong></p>
+        <div class="buttons">
+            <button class="btn btn-yes" id="yesButton" onclick="showCardDownload()">Sí 💖</button>
+            <button class="btn btn-no" id="noButton">No 💔</button>
+        </div>
+        <div class="card-download" id="cardDownload">
+            <a id="downloadButton" href="carta.pdf" download>
+                <button class="btn">Descargar Carta 💌</button>
+            </a>
+        </div>
+    </div>
+    <script>
+        function showCardDownload() {
+            document.getElementById('cardDownload').style.display = 'block';
+        }
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        setInterval(createHeart, 300);
+        const noButton = document.getElementById("noButton");
+        const yesButton = document.getElementById("yesButton");
+        let moveCount = 0;
+
+        noButton.addEventListener("mouseover", () => {
+            if (moveCount < 10) {
+                const x = Math.random() * (window.innerWidth - 100);
+                const y = Math.random() * (window.innerHeight - 50);
+                noButton.style.left = `${x}px`;
+                noButton.style.top = `${y}px`;
+                yesButton.style.position="absolute";
+                moveCount++;
+            } else {
+                noButton.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

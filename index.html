@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <script src="vali.js"></script>
+    <title>Hola c:</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: "Parisienne", cursive ;
+            font-weight: 400;
+            font-style: normal;
+            animation: bgColorChange 10s infinite alternate;
+            position: relative;
+        }
+        @keyframes bgColorChange {
+            0% { background-color: #ff99cc; }
+            25% { background-color: #ff66b2; }
+            50% { background-color: #ff3399; }
+            75% { background-color: #ff007f; }
+            100% { background-color: #cc0066; }
+        }
+        .container {
+            background: #ffccdd;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            position: relative;
+            z-index: 10;
+        }
+        h1 {
+            color: white;
+            font-size: 24px;
+        }
+        p {
+            color: #660033;
+            font-size: 18px;
+        }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-yes {
+            background: #ff3366;
+            color: white;
+        }
+        .btn-no {
+            background: #ff6688;
+            color: white;
+            position: relative;
+        }
+        .btn-no:hover {
+            animation: moveUpRight 1s forwards;
+        }
+        @keyframes moveUpRight {
+            0% { transform: translateY(0) translateX(0); opacity: 1; }
+            50% { transform: translateY(-20px) translateX(30px); opacity: 0.8; }
+            100% { transform: translateY(-40px) translateX(100px); opacity: 0; }
+        }
+        .card-download {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background: #ffccdd;
+            border-radius: 10px;
+        }
+        .heart {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: red;
+            transform: rotate(-45deg);
+            animation: moveHearts 5s infinite;
+        }
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes moveHearts {
+            0% { top: 100%; }
+            100% { top: -20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts"></div>
+    <div class="container">
+        <h1 style="font-size: 60px; margin: 0px;">Contraseña</h1>
+        <input font-family="&quot;Parisienne&quot;, cursive ;" style="width: 75%;" type="password" id="password" placeholder="La contraseña va sin espacios">
+        <p class="hint">Me llegaste al corazón sin estar cerca. Un ramo que hablaba sin palabras, lleno de sentimientos y emoción. Digite <b><u>la flor</u></b> y <b><u>el color</u></b> que personificaron ese primer gesto de amor.</p>
+        <button class="btn" onclick="validarPassword()">Ingresar</button>
+    </div>
+
+    <script>
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        setInterval(createHeart, 300);
+    </script>
+    
+</body>
+</html>
